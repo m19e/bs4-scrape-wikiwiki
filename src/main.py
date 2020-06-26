@@ -9,5 +9,6 @@ response = requests.get(URL, timeout=1)
 
 soup = BeautifulSoup(response.text, 'lxml')
 
-for h4_tag in soup.select("h4[id^='h4_content_']"):
-    print(h4_tag.text)
+[print(url) for url in map(lambda h4: h4.a.get("href"), filter(
+    lambda h4: h4.a != None, soup.select("h4[id^='h4_content_']")
+))]
