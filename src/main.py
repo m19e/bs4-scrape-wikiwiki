@@ -21,18 +21,10 @@ def get_gasha_table():
     table = soup.select("table")
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
     body = table[0].tbody.select("tr")
-    bo = list(map(lambda x: x.text, table[0].tbody.select("tr")))
 
-    span = ""
-    for i in range(2):
-        if body[i].select_one("td").get("rowspan") != None:
-            del body[i].select_one("td")["rowspan"]
-            span = body[i].select_one("td")
-        if len(body[i].select("td")) < len(head):
-            body[i].select("td").insert(0, span)
-            span = ""
-
-    result = [dict(zip(head, [t.text for t in tr])) for tr in body]
+    texts = [[t.text for t in tr] for tr in body]
+    f = [insert_head(i, len(head)) for i in texts]
+    result = [dict(zip(head, t)) for t in f]
     print_list(result)
 
 
