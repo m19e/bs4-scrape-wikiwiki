@@ -7,9 +7,15 @@ def print_list(list):
     [print(item) for item in list]
 
 
+def insert_head(l, head):
+    if len(l) < head:
+        return [0] + l
+    return l
+
+
 def get_gasha_table():
     URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
-    response = requests.get(URL, timeout=5)
+    response = requests.get(URL, timeout=1)
     soup = BeautifulSoup(response.text, 'lxml')
 
     table = soup.select("table")
