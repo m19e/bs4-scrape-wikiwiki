@@ -9,8 +9,8 @@ def print_list(list):
 
 def get_gasha_table():
     URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
-    reponse = requests.get(URL, timeout=1)
-    soup = BeautifulSoup(reponse.text, 'lxml')
+    response = requests.get(URL, timeout=5)
+    soup = BeautifulSoup(response.text, 'lxml')
 
     table = soup.select("table")
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
