@@ -33,7 +33,13 @@ def get_gasha_table():
     texts = [[t.text for t in tr] for tr in fil]
     f = [insert_head(i, len(head)) for i in texts]
     result = [dict(zip(head, t)) for t in f]
-    print_list(result)
+    fix = []
+    for i, g in enumerate(result):
+        if g['期間'] == 0:
+            g['期間'] = result[i-1]['期間']
+        fix.append(g)
+
+    print_list(fix)
 
 
 def main():
