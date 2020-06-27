@@ -13,6 +13,13 @@ def insert_head(l, head):
     return l
 
 
+def a_exists(list):
+    for i in list:
+        if i.a != None:
+            return True
+    return False
+
+
 def get_gasha_table():
     URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
     response = requests.get(URL, timeout=1)
@@ -22,7 +29,8 @@ def get_gasha_table():
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
     body = table[0].tbody.select("tr")
 
-    texts = [[t.text for t in tr] for tr in body]
+    fil = filter(lambda x: a_exists(x), body)
+    texts = [[t.text for t in tr] for tr in fil]
     f = [insert_head(i, len(head)) for i in texts]
     result = [dict(zip(head, t)) for t in f]
     print_list(result)
