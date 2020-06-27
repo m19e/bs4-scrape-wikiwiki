@@ -15,7 +15,6 @@ def insert_head(l, head):
 
 def a_exists(l):
     for i in list(reversed(list(l))):
-        print(i.a)
         if i.a != None:
             return True
     return False
