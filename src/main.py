@@ -20,12 +20,7 @@ def a_exists(l):
     return False
 
 
-def get_gasha_table():
-    URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
-    response = requests.get(URL, timeout=1)
-    soup = BeautifulSoup(response.text, 'lxml')
-
-    table = soup.select("table")
+def get_current_gasha(table):
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
     body = table[0].tbody.select("tr")
 
@@ -39,7 +34,18 @@ def get_gasha_table():
             g['期間'] = result[i-1]['期間']
         fix.append(g)
 
-    print_list(fix)
+    return fix
+
+
+def get_gasha_table():
+    URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
+    response = requests.get(URL, timeout=1)
+    soup = BeautifulSoup(response.text, 'lxml')
+
+    table = soup.select("table")
+    cur = get_current_gasha(table)
+
+    print_list(cur)
 
 
 def main():
