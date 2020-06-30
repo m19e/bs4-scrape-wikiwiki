@@ -20,6 +20,10 @@ def a_exists(l):
     return False
 
 
+def filter_by_thead(tables, target):
+    return list(filter(lambda x: x.tr.select_one("td") is not None and x.tr.select_one("td").text == target, tables))
+
+
 def get_current_gasha(table):
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
     body = table[0].tbody.select("tr")
@@ -47,6 +51,10 @@ def get_gasha_table():
     cur = get_current_gasha(table)
 
     print_list(cur)
+
+    fed = filter_by_thead(table, '期間')
+
+    print_list(fed)
 
 
 def main():
