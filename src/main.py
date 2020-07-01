@@ -28,10 +28,11 @@ def get_current_gasha(table):
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
     body = table[0].tbody.select("tr")
 
-    fil = filter(lambda x: a_exists(x), body)
-    texts = [[t.text for t in tr] for tr in fil]
-    f = [insert_head(i, len(head)) for i in texts]
-    result = [dict(zip(head, t)) for t in f]
+    # fil = list(filter(lambda x: a_exists(x), body))
+    # texts = [[t.text for t in tr] for tr in fil]
+    # f = [insert_head(i, len(head)) for i in texts]
+    result = [dict(zip(head, t)) for t in [insert_head(i, len(head)) for i in [
+        [t.text for t in tr] for tr in list(filter(lambda x: a_exists(x), body))]]]
     fix = []
     for i, g in enumerate(result):
         cp = dict(g)
