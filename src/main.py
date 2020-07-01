@@ -69,6 +69,15 @@ def main():
     print_list(cards)
 
 
+def save_html_file(html, filename):
+    with open(filename, 'w') as file:
+        file.write(html)
+
+
+def load_html_file(filename):
+    return open(filename)
+
+
 if __name__ == "__main__":
     # main()
     get_gasha_table()
