@@ -52,11 +52,7 @@ def get_gasha_table():
     table = soup.select("table")
     cur = get_current_gasha(table)
 
-    print_list(cur)
-
     fed = filter_by_thead(table, '期間')
-
-    print_list(fed)
 
 
 def main():
