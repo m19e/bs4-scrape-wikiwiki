@@ -8,9 +8,10 @@ def print_list(list):
 
 
 def insert_head(l, head):
-    if len(l) < head:
-        return [0] + l
-    return l
+    r = list(l)
+    for _ in range(head - len(r)):
+        r = [0] + r
+    return r
 
 
 def a_exists(l):
