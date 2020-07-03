@@ -51,6 +51,18 @@ def get_current_gasha(table):
     return fix
 
 
+def get_pass_gashas(tables):
+    result = []
+    for table in tables:
+        head = [td.text for td in table.thead.tr.select('td')]
+        body = [[td.text for td in tr.select('td')] for tr in [
+            trs for trs in list(filter(lambda x: a_exists(x) and filter_by_onerous(x, '有償限定'), table.tbody.select('tr')))]]
+        zipped = [dict(zip(head, g))
+                  for g in [insert_head(i, len(head)) for i in body]]
+        result.append(zipped)
+    return result
+
+
 def get_gasha_table():
     # URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
     # response = requests.get(URL, timeout=5)
@@ -61,6 +73,11 @@ def get_gasha_table():
     cur = get_current_gasha(table)
 
     fed = filter_by_thead(table, '期間')
+
+    result = get_pass_gashas(fed)
+
+    # print_list(sum(result, []))
+    save_list_file(sum(result, []), 'gashalist.txt')
 
 
 def main():
