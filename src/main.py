@@ -25,6 +25,13 @@ def filter_by_thead(tables, target):
     return list(filter(lambda x: x.tr.select_one("td") is not None and x.tr.select_one("td").text == target, tables))
 
 
+def filter_by_onerous(gasha, target):
+    for tr in gasha:
+        if target in tr.text:
+            return tr.a != None
+    return True
+
+
 def get_current_gasha(table):
     head = list(map(lambda x: x.text, table[0].thead.tr.select("th")))
     body = table[0].tbody.select("tr")
