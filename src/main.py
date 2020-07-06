@@ -64,10 +64,7 @@ def get_pass_gashas(tables):
 
 
 def get_gasha_table():
-    # URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
-    # response = requests.get(URL, timeout=5)
-    # soup = BeautifulSoup(response.text, 'lxml')
-    soup = BeautifulSoup(load_html_file('gashapage.html'), 'lxml')
+    soup = BeautifulSoup(load_html_file('gashapage.dat'), 'lxml')
 
     table = soup.select("table")
     cur = get_current_gasha(table)
@@ -76,8 +73,8 @@ def get_gasha_table():
 
     result = get_pass_gashas(fed)
 
-    # print_list(sum(result, []))
-    save_list_file(sum(result, []), 'gashalist.txt')
+    print_list(sum(result, []))
+    # save_list_file(sum(result, []), 'gashalist.txt')
 
 
 def main():
