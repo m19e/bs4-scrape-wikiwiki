@@ -105,6 +105,17 @@ def load_html_file(filename):
     return open(filename)
 
 
+def save_bin_local(url, filename):
+    # URL = "https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3"
+    response = requests.get(url, timeout=5)
+    print(response.content)
+    print(type(response.content))
+    with open(filename, 'wb') as f:
+        f.write(response.content)
+
+
 if __name__ == "__main__":
     # main()
     get_gasha_table()
+    # save_bin_local(
+    #     'https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3', 'gashapage.dat')
