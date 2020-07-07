@@ -64,7 +64,7 @@ def get_pass_gashas(tables):
 
 
 def get_gasha_table():
-    soup = BeautifulSoup(load_html_file('gashapage.dat'), 'lxml')
+    soup = BeautifulSoup(load_html_file('gashapage.html'), 'lxml')
 
     table = soup.select("table")
     cur = get_current_gasha(table)
@@ -114,5 +114,3 @@ def save_bin_local(url, filename):
 if __name__ == "__main__":
     # main()
     get_gasha_table()
-    # save_bin_local(
-    #     'https://wikiwiki.jp/shinycolors/%E3%82%AC%E3%82%B7%E3%83%A3', 'gashapage.dat')
