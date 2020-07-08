@@ -1,3 +1,4 @@
+import json
 import requests
 import urllib.parse
 from bs4 import BeautifulSoup
@@ -5,6 +6,10 @@ from bs4 import BeautifulSoup
 
 def print_list(list):
     [print(item) for item in list]
+
+
+def print_as_json(list):
+    [print(json.dumps(item, ensure_ascii=False, indent=4)) for item in list]
 
 
 def insert_head(l, head):
