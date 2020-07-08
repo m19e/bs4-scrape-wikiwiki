@@ -89,7 +89,7 @@ def get_gasha_table():
         json.dump({'data': uniq}, f, ensure_ascii=False, indent=4)
 
 
-def main():
+def get_card_link():
     URL = "https://wikiwiki.jp/shinycolors/%E5%B0%8F%E5%AE%AE%E6%9E%9C%E7%A9%82"
     response = requests.get(URL, timeout=1)
     soup = BeautifulSoup(response.text, 'lxml')
@@ -116,5 +116,5 @@ def load_html_file(filename):
 
 
 if __name__ == "__main__":
-    # main()
+    # get_card_link()
     get_gasha_table()
