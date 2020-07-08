@@ -111,7 +111,8 @@ def save_list_file(l, filename):
 
 
 def load_html_file(filename):
-    return open(filename)
+    with open(filename, 'r') as fp:
+        return fp.read()
 
 
 def save_bin_local(url, filename):
