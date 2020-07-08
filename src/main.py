@@ -76,10 +76,11 @@ def get_gasha_table():
 
     fed = filter_by_thead(table, '期間')
 
-    result = get_pass_gashas(fed)
+    past = get_pass_gashas(fed)
 
+    result = sum([cur] + past, [])
     with open('output.json', 'w') as f:
-        json.dump({'data': sum(result, [])}, f, ensure_ascii=False, indent=4)
+        json.dump({'data': result}, f, ensure_ascii=False, indent=4)
     # print_list(sum(result, []))
     # save_list_file(sum(result, []), 'gashalist.txt')
 
