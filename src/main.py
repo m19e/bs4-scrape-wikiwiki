@@ -78,7 +78,9 @@ def get_gasha_table():
 
     result = get_pass_gashas(fed)
 
-    print_list(sum(result, []))
+    with open('output.json', 'w') as f:
+        json.dump({'data': sum(result, [])}, f, ensure_ascii=False, indent=4)
+    # print_list(sum(result, []))
     # save_list_file(sum(result, []), 'gashalist.txt')
 
 
