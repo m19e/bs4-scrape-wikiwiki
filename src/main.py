@@ -79,8 +79,14 @@ def get_gasha_table():
     past = get_pass_gashas(fed)
 
     result = sum([cur] + past, [])
+
+    seen = []
+    uniq = [x for x in list(reversed(list(result)))
+            if x['ガシャ名'] not in seen and not seen.append(x['ガシャ名'])]
+    uniq.reverse()
+
     with open('output.json', 'w') as f:
-        json.dump({'data': result}, f, ensure_ascii=False, indent=4)
+        json.dump({'data': uniq}, f, ensure_ascii=False, indent=4)
 
 
 def main():
