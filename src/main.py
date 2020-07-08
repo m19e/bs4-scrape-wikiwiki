@@ -105,11 +105,6 @@ def save_html_file(html, filename):
         file.write(html)
 
 
-def save_list_file(l, filename):
-    with open(filename, 'w') as file:
-        file.writelines('\n'.join(map(str, l)))
-
-
 def load_html_file(filename):
     with open(filename, 'r') as fp:
         return fp.read()
