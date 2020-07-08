@@ -81,8 +81,6 @@ def get_gasha_table():
     result = sum([cur] + past, [])
     with open('output.json', 'w') as f:
         json.dump({'data': result}, f, ensure_ascii=False, indent=4)
-    # print_list(sum(result, []))
-    # save_list_file(sum(result, []), 'gashalist.txt')
 
 
 def main():
